@@ -252,7 +252,7 @@
 
 			<p>
 				This page show how to setup JSED for your own project. It is assumed that the JSED library files are
-				contained within the directory <strong>lib/jsed/</strong>. You should replace this path with the
+				contained within the directory <strong>lib/jsed/dist/</strong>. You should replace this path with the
 				path in which the files are actually stored.
 			</p>
 
@@ -268,8 +268,8 @@
 
 			<br>
 
-			<pre><code>&lt;script src="lib/jsed/jsed.min.js"&gt;&lt;/script&gt;
-&lt;script src="lib/jsed/lib/current-executing-script/current-executing-script.min.js"&gt;&lt;/script&gt;
+			<pre><code>&lt;script src="lib/jsed/dist/jsed.min.js"&gt;&lt;/script&gt;
+&lt;script src="lib/jsed/dist/lib/current-executing-script/current-executing-script.min.js"&gt;&lt;/script&gt;
 </code></pre>
 
 			<br>
@@ -284,14 +284,14 @@
 
 			<br>
 
-			<pre><code>&lt;script src="lib/jsed/lib/zip/zip.js"&gt;&lt;/script&gt;
-&lt;script src="lib/jsed/lib/zip/inflate.js"&gt;&lt;/script&gt;
-&lt;script src="lib/jsed/lib/zip/deflate.js"&gt;&lt;/script&gt;
+			<pre><code>&lt;script src="lib/jsed/dist/lib/zip/zip.js"&gt;&lt;/script&gt;
+&lt;script src="lib/jsed/dist/lib/zip/inflate.js"&gt;&lt;/script&gt;
+&lt;script src="lib/jsed/dist/lib/zip/deflate.js"&gt;&lt;/script&gt;
 &lt;script&gt;
 	zip.useWebWorkers = false;
 &lt;/script&gt;
 
-&lt;script src="lib/jsed/lib/papaparse/papaparse.min.js"&gt;&lt;/script&gt;</code></pre>
+&lt;script src="lib/jsed/dist/lib/papaparse/papaparse.min.js"&gt;&lt;/script&gt;</code></pre>
 
 			<br>
 
@@ -943,6 +943,16 @@ file_put_contents($jsed_file_name, $jsed_data);
 			<br>
 
 			<h3 class="title is-3">
+				Embedding Data Directly Within a HTML File
+			</h3>
+
+			<p>
+				Data can be directly embedded within a HTML file, but this is not a scalable approach.
+			</p>
+
+			<br>
+
+			<h3 class="title is-3">
 				Firefox
 			</h3>
 
@@ -1068,7 +1078,7 @@ file_put_contents($jsed_file_name, $jsed_data);
 	<script src="demo/js/bulma.js"></script>
 
 	<!-- JSED scripts -->
-	<script src="src/jsed.js"></script>
+	<script src="dist/jsed.min.js"></script>
 	<script src="dist/lib/current-executing-script/current-executing-script.min.js"></script>
 
 	<script src="dist/lib/zip/zip.js"></script>
