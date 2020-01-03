@@ -1,0 +1,1 @@
+﻿JSED.execute("json", "text", '{ "name": "hello", "content": "world" }');

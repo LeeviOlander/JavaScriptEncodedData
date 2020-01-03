@@ -1,0 +1,1343 @@
+﻿<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+
+<head>
+
+	<title>
+		JSED - JavaScript Encoded Data
+	</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Leevi Olander">
+	<meta name="keywords" content="JSED, HTML, JavaScript, JS, Local, Files">
+	<meta name="description" content="JSED, access properly encoded client side files from the client's web browser.">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="demo/assets/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="demo/assets/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="demo/assets/favicon/favicon-16x16.png">
+	<link rel="manifest" href="demo/assets/favicon/site.webmanifest">
+	<link rel="mask-icon" href="demo/assets/favicon/safari-pinned-tab.svg" color="#3273dc">
+	<link rel="shortcut icon" href="demo/assets/favicon/favicon.ico">
+	<meta name="msapplication-TileColor" content="#2b5797">
+	<meta name="msapplication-config" content="demo/assets/favicon/browserconfig.xml">
+	<meta name="theme-color" content="#ffffff">
+
+	<link rel="stylesheet" href="demo/css/bulma.min.css" />
+	<link rel="stylesheet" href="demo/css/bulma-extension.css" />
+</head>
+
+<body>
+
+	<nav id="navbar" class="navbar has-shadow is-fixed-top">
+		<div class="container">
+			<div class="navbar-brand">
+				<a class="navbar-item" href="#main" id="logo">
+					<img src="assets/logo.svg">
+				</a>
+
+				<div id="navbarBurger" class="navbar-burger burger" data-target="nav-menu">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+
+			<div id="nav-menu" class="navbar-menu">
+				<div class="navbar-start">
+
+				</div>
+				<div class="navbar-end">
+					<a class="navbar-item" href="#main" id="main">
+						Main
+					</a>
+					<a class="navbar-item" href="#why" id="why">
+						Why
+					</a>
+					<a class="navbar-item" href="#usage" id="usage">
+						Usage
+					</a>
+					<a class="navbar-item" href="#formats" id="formats">
+						File Formats And Encodings
+					</a>
+					<a class="navbar-item" href="#alternatives" id="alternatives">
+						Alternatives
+					</a>
+					<a class="navbar-item" href="#browser-support" id="browser-support">
+						Browser Support
+					</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<section class="section" id="main-section">
+		<div class="container">
+			<h1 class="title is-1">
+				<strong class="important">JSED</strong> - <strong class="important">J</strong>ava<strong class="important">S</strong>cript
+				<strong class="important">E</strong>ncoded <strong class="important">D</strong>ata
+			</h1>
+
+			<div class="columns is-multiline">
+				<div class="column is-half-fullhd is-half-widescreen is-full-desktop is-full-tablet">
+					<h3 class="subtitle is-3">
+						<strong>JSED</strong> is a file format that is a <strong>solution</strong> to the
+						<strong>CORS error</strong> when <strong>AJAX requesting local resources
+							from a locally executed HTML file</strong>. By implementing JSED one
+						can <strong>develop</strong> configuration intensive and multifile <strong>applications</strong>,
+						which require <strong>no installations</strong> by an end user and are <strong>locally executable</strong>.
+						Alternatively, the application can be hosted on a <strong>server without any changes to the code</strong>.
+					</h3>
+				</div>
+				<div class="column is-half-fullhd is-half-widescreen is-full-desktop is-full-tablet">
+					<h3 class="subtitle is-3" style="margin-bottom: 0;">
+						<strong>JSED</strong> (Success)
+					</h3>
+
+					<img src="demo/assets/img/jsed.png" />
+
+					<h3 class="subtitle is-3" style="margin-bottom: 0;">
+						<strong>XMLHttpRequest</strong> (Failure)
+					</h3>
+
+					<img src="demo/assets/img/ajax.png" />
+
+				</div>
+			</div>
+
+			<br>
+
+			<div class="columns is-multiline">
+				<div class="column is-half-fullhd is-half-widescreen is-full-desktop is-full-tablet">
+					<h3 class="title is-3">
+						How JSED Works
+					</h3>
+					<ol>
+						<li>
+							<strong>(Backend)</strong> Procure some data.
+						</li>
+						<li>
+							<strong>(Backend)</strong> Convert the data to the JSED format.
+						</li>
+						<li>
+							<strong>(Frontend)</strong> Include the JSED library and its dependencies in a client side application.
+						</li>
+						<li>
+							<strong>(Frontend)</strong> Specify the URL to a JSED file and call the JSED parse function.
+							<ol>
+								<li>
+									<strong>(JSED Library)</strong> JSED parse creates a new script element and set the source to the specified URL.
+								</li>
+								<li>
+									<strong>(JSED Library)</strong> JSED parse sets up completion callback logic for the created script element.
+								</li>
+								<li>
+									<strong>(JSED Library)</strong> JSED parse appends the created script element to the document head.
+								</li>
+								<li>
+									<strong>(JSED Library)</strong> The appended script element gets executed and thus the function JSED execute is called.
+								</li>
+								<li>
+									<strong>(JSED Library)</strong> JSED execute gets the originating script.
+								</li>
+								<li>
+									<strong>(JSED Library)</strong> JSED execute decodes the encoded data.
+								</li>
+								<li>
+									<strong>(JSED Library)</strong> JSED execute parses the decoded data.
+								</li>
+								<li>
+									<strong>(JSED Library)</strong> JSED execute stores the parsed result in memory.
+								</li>
+								<li>
+									<strong>(JSED Library)</strong> JSED execute calls the completion callbacks.
+								</li>
+							</ol>
+						</li>
+						<li>
+							<strong>(Frontend)</strong> Use the original data regardless of the execution context.
+						</li>
+					</ol>
+
+					<br>
+
+					<p>
+						JSED works by encoding all data to a plain JavaScript compatible format, in other words the data is
+						saved as raw executable JavaScript code. For example, the binary data of a .zip file
+						can be BASE64 encoded in to a JavaScript compatible string. Thus, JSED is a wrapper over arbitrary file formats.
+						See the example of how, for example, a JSON file can be converted to JSED.
+					</p>
+				</div>
+				<div class="column is-half-fullhd is-half-widescreen is-full-desktop is-full-tablet">
+					<h3 class="subtitle is-3" style="margin-bottom: 0;">
+						<strong>JSON File Content</strong>
+
+					</h3>
+
+					<br>
+
+					<pre><code>{
+    "name": "hello",
+    "content": "world"
+}</code></pre>
+
+					<br>
+
+					<h3 class="subtitle is-3" style="margin-bottom: 0;">
+						<strong>JSED File Content</strong>
+					</h3>
+
+					<br>
+
+					<pre><code>JSED.execute("json", "text",
+             `
+                 {
+             	     "name": "hello",
+             	     "content": "world"
+                 }
+             `
+);</code></pre>
+
+				</div>
+			</div>
+
+
+
+			<br>
+
+			<h3 class="title is-3">
+				JSED Dependencies
+			</h3>
+
+			<p>
+				The only dependency that must be included in the project is
+				<strong>
+					<a href="https://github.com/JamesMGreene/currentExecutingScript">
+						currentExecutingScript
+					</a>
+				</strong>
+				, however see <strong>"File Formats & Encodings"</strong> for the dependencies required by various formats.
+			</p>
+
+		</div>
+	</section>
+
+	<section class="section" id="why-section">
+		<div class="container">
+			<h1 class="title is-1">
+				<strong class="important">Why?</strong>
+			</h1>
+
+			<p>
+				Some applications may have requirements that they have to be downloadable to a client machine and that they must be executable
+				without any installations. In cases like these, a JavaScript application is an excellent choice since almost everyone with a computer
+				has a web browser installed. However, JavaScript executed from a local file can not read any other local files except other JavaScript
+				files or CSS files. This is a significant downside, especially if the application needs to reference some configurations or data. The
+				table below shows just a few topics and questions that discuss the CORS error to which JSED is a solution.
+			</p>
+
+			<br>
+
+			<table id="why-table">
+
+			</table>
+		</div>
+	</section>
+
+	<section class="section" id="usage-section">
+		<div class="container">
+			<h1 class="title is-1">
+				<strong class="important">Usage</strong>
+			</h1>
+
+			<p>
+				This page show how to setup JSED for your own project. It is assumed that the JSED library files are
+				contained within the directory <strong>lib/jsed/</strong>. You should replace this path with the
+				path in which the files are actually stored.
+			</p>
+
+			<br>
+
+			<h3 class="title is-3">
+				Required Initialization
+			</h3>
+
+			<p>
+				These script elements should be executed before JSED can be used.
+			</p>
+
+			<br>
+
+			<pre><code>&lt;script src="lib/jsed/jsed.min.js"&gt;&lt;/script&gt;
+&lt;script src="lib/jsed/lib/current-executing-script/current-executing-script.min.js"&gt;&lt;/script&gt;
+</code></pre>
+
+			<br>
+
+			<h3 class="title is-3">
+				Optional Initialization
+			</h3>
+
+			<p>
+				These script elements should be executed before JSED can properly be used for zip and csv files.
+			</p>
+
+			<br>
+
+			<pre><code>&lt;script src="lib/jsed/lib/zip/zip.js"&gt;&lt;/script&gt;
+&lt;script src="lib/jsed/lib/zip/inflate.js"&gt;&lt;/script&gt;
+&lt;script src="lib/jsed/lib/zip/deflate.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+	zip.useWebWorkers = false;
+&lt;/script&gt;
+
+&lt;script src="lib/jsed/lib/papaparse/papaparse.min.js"&gt;&lt;/script&gt;</code></pre>
+
+			<br>
+
+			<div class="columns is-multiline">
+				<div class="column is-half-fullhd is-half-widescreen is-full-desktop is-full-tablet">
+					<h3 class="title is-3">
+						JSED File Syntax
+					</h3>
+
+					<p>
+						Each JSED file should only contain a call to this function with the specified
+						parameters:
+					</p>
+
+					<br>
+
+					<pre><code>JSED.execute(fileFormat, encodingsString, encodedData);</code></pre>
+
+					<br>
+
+					<p>
+						<ol>
+							<li>
+								<strong>fileFormat</strong>: String representing the file format of the encoded data.
+							</li>
+							<li>
+								<strong>encodingsString</strong>: String that contains different encoding methods separated by commas.
+								The order of the encodings is such that the first method is the outermost encoding method with which <strong>encodedData</strong> has been
+								processed. For example, if <strong>encodingsString</strong> = "base64, base32", then <strong>encodedData</strong> has first been
+								encoded with the base32 algorithm and then with the base64 algorithm. This means that for correct decoding <strong>encodedData</strong>
+								should first be decoded with base64 and then with base32.
+							</li>
+							<li>
+								<strong>encodedData</strong>: String that contains the encoded data.
+							</li>
+						</ol>
+
+
+					</p>
+
+				</div>
+				<div class="column is-half-fullhd is-half-widescreen is-full-desktop is-full-tablet">
+					<h3 class="title is-3">
+						JSED Usage Syntax
+					</h3>
+
+					<p>
+						To parse a JSED file, call this function
+					</p>
+
+					<br>
+
+					<pre><code>JSED.parse(src, onCompleteCallback, async = true, reload = false);</code></pre>
+
+					<br>
+
+					<p>
+						<ol>
+							<li>
+								<strong>src</strong>: String representing the URL to the JSED file.
+							</li>
+							<li>
+								<strong>onCompleteCallback</strong>: A function that takes an object as an argument. The object represents the result of the
+								parsing process. The function is called when the parsing process has been completed.
+							</li>
+							<li>
+								<strong>async</strong>: Boolean stating whether the script element is loaded asynchronous or not. The parsing
+								process is always asynchronous. Defaults to true.
+							</li>
+							<li>
+								<strong>reload</strong>: Boolean stating whether the entire parsing processed should be recompleted.
+								If the value is true and <strong>src</strong> has already been parsed and is still stored in memory, then
+								<strong>onCompleteCallback</strong> will be immediately called with the stored value. This saves computation
+								time on subsequent calls. Defaults to false.
+							</li>
+						</ol>
+
+
+					</p>
+
+					<br>
+
+					<p>
+						To clear the results stored in memory, use:
+					</p>
+
+					<br>
+
+					<pre><code>JSED.clearState(src);</code></pre>
+
+					<br>
+
+					<p>
+						<ol>
+							<li>
+								<strong>src</strong>: String representing the URL to the JSED file of which the in memory data should be cleared.
+							</li>
+						</ol>
+					</p>
+
+				</div>
+
+			</div>
+
+			<br>
+
+			<h3 class="title is-3">
+				Examples
+			</h3>
+
+			<p>
+				Here are some examples of what the contents of JSED files may look like. Additionally,
+				the files can be parsed, after which the result is displayed as a string in the output box.
+				The result is also logged in to the console, which allows for more indepth inspection.
+			</p>
+
+			<br>
+
+			<div class="columns is-multiline">
+				<div class="column is-half-fullhd is-half-widescreen is-full-desktop is-full-tablet">
+					<h4 class="title is-4">
+						CSV Example
+					</h4>
+
+					<p>
+						File content:
+					</p>
+
+					<br>
+
+					<pre><code>JSED.execute("csv", "base64", "aWQseCx5LHoNCjEsMiwzLDQNCjIsMywyLDENCjMsMiwyLDINCjQsMSwxLDENCjUsOCw5LDg=");</code></pre>
+
+					<br>
+
+					<p>
+						JavaScript:
+					</p>
+
+					<br>
+
+					<pre><code>JSED.parse('demo/data/jsed/example-csv.jsed', function (parsedData)
+{
+    // Assume that getOutputElement() is a function that
+    // returns the correct output textarea. The value
+    // of the output textarea is set to the JSON serialization
+    // of parsedData, just so that it can be displayed.
+    var outputElement = getOutputElement();
+    outputElement.value = JSON.stringify(parsedData);
+
+    console.log(parsedData);
+};</code></pre>
+
+					<br>
+
+					<div class="buttons">
+						<button class="button is-link" id="csv-example-button">Execute JavaScript</button>
+						<button class="button is-outlined" id="csv-example-dl-button">Open Origin File</button>
+					</div>
+
+					<p>
+						Result (view details in the JavaScript console):
+					</p>
+
+					<br>
+
+					<textarea class="textarea" id="csv-example-output" readonly></textarea>
+
+					<br>
+
+				</div>
+
+				<div class="column is-half-fullhd is-half-widescreen is-full-desktop is-full-tablet">
+					<h4 class="title is-4">
+						HTML Example
+					</h4>
+
+					<p>
+						File content:
+					</p>
+
+					<br>
+
+					<pre><code>JSED.execute("html", "rot13, base64", "CTEcqw4APtx8pQ4APtxWFTIfoT8tCUAjLJ4tp3E5oTH9VzAioT9lBvOlMJDvCaqipzkxVGjip3Ouow4APtx8Y3N+QDb8Y2Ecqw4=");</code></pre>
+
+					<br>
+
+					<p>
+						JavaScript:
+					</p>
+
+					<br>
+
+					<pre><code>JSED.parse('demo/data/jsed/example-html.jsed', function (parsedData)
+{
+    // Assume that getOutputElement() is a function that
+    // returns the correct output textarea. The value
+    // of the output textarea is set to the JSON serialization
+    // of parsedData, just so that it can be displayed.
+    var outputElement = getOutputElement();
+    outputElement.value = parsedData.innerHTML;
+
+    console.log(parsedData);
+};</code></pre>
+
+					<br>
+
+					<div class="buttons">
+						<button class="button is-link" id="html-example-button">Execute JavaScript</button>
+						<button class="button is-outlined" id="html-example-dl-button">Open Origin File</button>
+					</div>
+
+					<p>
+						Result (view details in the JavaScript console):
+					</p>
+
+					<br>
+
+					<textarea class="textarea" id="html-example-output" readonly></textarea>
+
+					<br>
+
+				</div>
+
+				<div class="column is-half-fullhd is-half-widescreen is-full-desktop is-full-tablet">
+					<h4 class="title is-4">
+						JSON Example
+					</h4>
+
+					<p>
+						File content:
+					</p>
+
+					<br>
+
+					<pre><code>JSED.execute("json", "text", '{ "name": "hello", "content": "world" }');</code></pre>
+
+					<br>
+
+					<p>
+						JavaScript:
+					</p>
+
+					<br>
+
+					<pre><code>JSED.parse('demo/data/jsed/example-json.jsed', function (parsedData)
+{
+    // Assume that getOutputElement() is a function that
+    // returns the correct output textarea. The value
+    // of the output textarea is set to the JSON serialization
+    // of parsedData, just so that it can be displayed.
+    var outputElement = getOutputElement();
+    outputElement.value = JSON.stringify(parsedData);
+
+    console.log(parsedData);
+};</code></pre>
+
+					<br>
+
+					<div class="buttons">
+						<button class="button is-link" id="json-example-button">Execute JavaScript</button>
+						<button class="button is-outlined" id="json-example-dl-button">Open Origin File</button>
+					</div>
+
+					<p>
+						Result (view details in the JavaScript console):
+					</p>
+
+					<br>
+
+					<textarea class="textarea" id="json-example-output" readonly></textarea>
+
+					<br>
+
+				</div>
+
+				<div class="column is-half-fullhd is-half-widescreen is-full-desktop is-full-tablet">
+					<h4 class="title is-4">
+						TXT Example
+					</h4>
+
+					<p>
+						File content:
+					</p>
+
+					<br>
+
+					<pre><code>JSED.execute("txt", "", "Hello World!");</code></pre>
+
+					<br>
+
+					<p>
+						JavaScript:
+					</p>
+
+					<br>
+
+					<pre><code>JSED.parse('demo/data/jsed/example-txt.jsed', function (parsedData)
+{
+    // Assume that getOutputElement() is a function that
+    // returns the correct output textarea. The value
+    // of the output textarea is set to the JSON serialization
+    // of parsedData, just so that it can be displayed.
+    var outputElement = getOutputElement();
+    outputElement.value = JSON.stringify(parsedData);
+
+    console.log(parsedData);
+};</code></pre>
+
+					<br>
+
+					<div class="buttons">
+						<button class="button is-link" id="txt-example-button">Execute JavaScript</button>
+						<button class="button is-outlined" id="txt-example-dl-button">Open Origin File</button>
+					</div>
+
+					<p>
+						Result (view details in the JavaScript console):
+					</p>
+
+					<br>
+
+					<textarea class="textarea" id="txt-example-output" readonly></textarea>
+
+					<br>
+
+				</div>
+
+				<div class="column is-full">
+					<h4 class="title is-4">
+						ZIP Example
+					</h4>
+
+					<p>
+						File content:
+					</p>
+
+					<br>
+
+					<pre><code>JSED.execute("zip", "base64", "UEsDBBQAAAAIAMVAcE8urjf4NgAAADgAAAAPAAAAZXhhbXBsZS1jc3YuY3N2FYixDcAgEMT6l34TN58QiexDwwbAahSMxAoccmHLe65aaHSGW/DwktwkZbhJF7dECJ2PzE8+UEsDBAoAAAAAAIFBcE9x0+yMTQAAAE0AAAARAAAAZXhhbXBsZS1odG1sLmh0bWzvu788ZGl2Pg0KCTxwPg0KCQlIZWxsbyA8c3BhbiBzdHlsZT0iY29sb3I6IHJlZCI+d29ybGQhPC9zcGFuPg0KCTwvcD4NCjwvZGl2PlBLAwQKAAAAAADyQHBP3jwnQy8AAAAvAAAAEQAAAGV4YW1wbGUtanNvbi5qc29u77u/ew0KCSJuYW1lIjogImhlbGxvIiwNCgkiY29udGVudCI6ICJ3b3JsZCINCn1QSwMECgAAAAAA4UBwT24nTAgPAAAADwAAAA8AAABleGFtcGxlLXR4dC50eHTvu79IZWxsbyB3b3JsZCFQSwECPwAUAAAACADFQHBPLq43+DYAAAA4AAAADwAkAAAAAAAAACAAAAAAAAAAZXhhbXBsZS1jc3YuY3N2CgAgAAAAAAABABgAzke58EOc1QHOR7nwQ5zVAfl/YsRDnNUBUEsBAj8ACgAAAAAAgUFwT3HT7IxNAAAATQAAABEAJAAAAAAAAAAgAAAAYwAAAGV4YW1wbGUtaHRtbC5odG1sCgAgAAAAAAABABgA47UTwkSc1QHjtRPCRJzVAZHDqatEnNUBUEsBAj8ACgAAAAAA8kBwT948J0MvAAAALwAAABEAJAAAAAAAAAAgAAAA3wAAAGV4YW1wbGUtanNvbi5qc29uCgAgAAAAAAABABgAFeNAJESc1QEV40AkRJzVAf04LfRDnNUBUEsBAj8ACgAAAAAA4UBwT24nTAgPAAAADwAAAA8AJAAAAAAAAAAgAAAAPQEAAGV4YW1wbGUtdHh0LnR4dAoAIAAAAAAAAQAYAGD8hQ9EnNUBYPyFD0Sc1QGW5VtVQ5zVAVBLBQYAAAAABAAEAIgBAAB5AQAAAAA=");</code></pre>
+
+					<br>
+
+					<p>
+						JavaScript:
+					</p>
+
+					<br>
+
+					<pre><code>JSED.parse('demo/data/jsed/example-zip.jsed', function (parsedData)
+{
+    // Assume that getOutputElement() is a function that
+    // returns the correct output textarea. The value
+    // of the output textarea is set to the JSON serialization
+    // of parsedData, just so that it can be displayed.
+    var outputElement = getOutputElement();
+    outputElement.value = JSON.stringify(parsedData);
+
+    console.log(parsedData);
+};</code></pre>
+
+					<br>
+
+					<div class="buttons">
+						<button class="button is-link" id="zip-example-button">Execute JavaScript</button>
+						<button class="button is-outlined" id="zip-example-dl-button">Open Origin File</button>
+					</div>
+
+					<p>
+						Result (view details in the JavaScript console):
+					</p>
+
+					<br>
+
+					<textarea class="textarea" id="zip-example-output" readonly></textarea>
+
+					<br>
+
+				</div>
+
+			</div>
+
+
+			<br>
+
+			<h3 class="title is-3">
+				JSED Limitations
+			</h3>
+
+			<p>
+				Currently this library does not support writing and converting plain data to the JSED format. Vanilla JavaScript
+				executed from a browser does not even have any file write permissions, except that of downloading a file to a location
+				specified by a user. However, this is usually only a minor inconviniece since often developers have access to a backend language
+				with full permissions. The following code creates the file <strong>"example.jsed"</strong> in PHP, where the created file contains the base64
+				encoded data of a zip file. The code is relatively easy to understand and replicate in other languages, even if you have no experience with PHP.
+			</p>
+
+			<br>
+
+			<pre><code>// THIS IS PHP CODE, BUT THE CODE SHOULD BE SIMILAR IN ANY LANGUAGE
+	
+// Some example file paths.
+$jsed_file_name = "example.jsed";
+$source_file_path = "/path/to/some/file.zip";
+
+// Get the binary data of $source_file_path and base64 encode it.
+$encoded_data = base64_encode(file_get_contents($source_file_path));
+
+// The content of a JSED file. Note: It is important to leave the quotation
+// marks around $encoded_data, because the type of third parameter of the 
+// JavaScript function is a string. "." is the string concatenator in PHP.
+$jsed_data = "JSED.execute('zip', 'base64', " . "'" .  $encoded_data . "'" . ");";
+
+// The JavaScript equivalent of the line above (using string interpolation):
+// var jsedData = `JSED.execute('zip', 'base64', '${encodedData}');´;
+
+// Write $jsed_data to the file specified by $jsed_file_name
+file_put_contents($jsed_file_name, $jsed_data);
+</code></pre>
+
+
+
+		</div>
+	</section>
+
+	<section class="section" id="formats-section">
+		<div class="container">
+			<h1 class="title is-1">
+				<strong class="important">File Formats & Encodings</strong>
+			</h1>
+
+			<p>
+				JSED supports a few file formats and encodings out of the box, however, the actual purpose of
+				JSED is to be an interface for all file formats and encodings. If a file format or an encoding has
+				not been implemented and if one tries to use it, then JSED will throw an error. Implementing support for
+				different file formats and encodings is easy. File formats and encodings refer to the JSED file syntax:
+			</p>
+
+			<br>
+
+			<pre><code>JSED.execute(fileFormat, encodingsString, encodedData);</code></pre>
+
+			<br>
+
+			<p>
+				<ol>
+					<li>
+						<strong>fileFormat</strong>: String representing the file format of the encoded data.
+					</li>
+					<li>
+						<strong>encodingsString</strong>: String that contains different encoding methods separated by commas.
+						The order of the encodings is such that the first method is the outermost encoding method with which <strong>encodedData</strong> has been
+						processed. For example, if <strong>encodingsString</strong> = "base64, base32", then <strong>encodedData</strong> has first been
+						encoded with the base32 algorithm and then with the base64 algorithm. This means that for correct decoding <strong>encodedData</strong>
+						should first be decoded with base64 and then with base32.
+					</li>
+					<li>
+						<strong>encodedData</strong>: String that contains the encoded data.
+					</li>
+				</ol>
+			</p>
+
+			<br>
+
+			<h3 class="title is-3">
+				Supported File Formats
+			</h3>
+
+			<ol>
+				<li>
+					json
+				</li>
+				<li>
+					html
+				</li>
+				<li>
+					text, txt, [NO FILE EXTENSION]
+				</li>
+				<li>
+					csv (dependent on <a href="https://www.papaparse.com">PapaParse</a>)
+				</li>
+				<li>
+					zip (dependent on <a href="https://gildas-lormeau.github.io/zip.js/">zip.js</a>)
+				</li>
+				<li>
+					Other file formats that you yourself implement
+				</li>
+			</ol>
+
+			<br>
+
+			<h3 class="title is-3">
+				Supported Encodings
+			</h3>
+
+			<ol>
+				<li>
+					base64
+				</li>
+				<li>
+					text, txt
+				</li>
+				<li>
+					Other encodings that you yourself implement
+				</li>
+			</ol>
+
+			<br>
+
+			<h3 class="title is-3">
+				Implementing a File Format
+			</h3>
+
+			<p>
+				To implement a file format, you use the following syntax:
+			</p>
+
+			<br>
+
+			<pre><code>JSED.setFileFormatParsingFunction(fileFormat, parsingFunction);</code></pre>
+
+			<br>
+
+			<p>
+				Where <strong>fileFormat</strong> is a string representing the file format that you wish to implement and
+				<strong>parsingFunction</strong> is an asynchronous function that takes an object as an argument. The object should be parsed
+				and the result returned. See the example below for how the HTML fileformat has been implemented:
+			</p>
+
+			<br>
+
+			<pre><code>JSED.setFileFormatParsingFunction('html', async function (data)
+{
+    var div = document.createElement('div');
+    div.innerHTML = data.trim();
+
+    return div.firstChild;
+});</code></pre>
+
+			<br>
+
+			<p>
+				To implement one parsing function for several file formats (each extension is regarded to be its own separate file format) at once, use the following function:
+			</p>
+
+			<br>
+
+			<pre><code>JSED.setFileFormatParsingFunctionForMany(fileFormats, parsingFunction);</code></pre>
+
+			<br>
+
+			<p>
+				Where <strong>fileFormats</strong> is a list of strings representing the file formats that you wish to implement and
+				<strong>parsingFunction</strong> is an asynchronous function that takes an object as an argument. The object should be parsed
+				and the result returned. See the example below for how the text, txt and [NO FILE EXTENSTION] file formats have been implemented:
+			</p>
+
+			<br>
+
+			<pre><code>JSED.setFileFormatParsingFunctionForMany(['txt', 'text', ''], async function (data)
+{
+    return data;
+});</code></pre>
+
+			<br>
+
+			<h3 class="title is-3">
+				Implementing an Encoding
+			</h3>
+
+			<p>
+				To implement the decoding for an encoding, you use the following syntax:
+			</p>
+
+			<br>
+
+			<pre><code>JSED.setDecodingFunction(encoding, decodingFunction);</code></pre>
+
+			<br>
+
+			<p>
+				Where <strong>encoding</strong> is a string representing the encoding that you wish to implement and
+				<strong>decodingFunction</strong> is an asynchronous function that takes a string as an argument. The string
+				should then be decoded and the result returned. See the example below for how the decoding for base64 has been implemented:
+			</p>
+
+			<br>
+
+			<pre><code>JSED.setDecodingFunction('base64', async function (encodedData)
+{
+    // atob is a built in JavaScript function, which decodes
+    // data that has been encoded with the base64 encoding algorithm
+    return atob(encodedData);
+});</code></pre>
+
+			<br>
+
+			<p>
+				To implement one decoding function for several encodings at once, use the following function:
+			</p>
+
+			<br>
+
+			<pre><code>JSED.setDecodingFunctionForMany(encodings, decodingFunction);</code></pre>
+
+			<br>
+
+			<p>
+				Where <strong>encodings</strong> is a list of strings representing the encodings that you wish to implement and
+				<strong>decodingFunction</strong> is an asynchronous function that takes a string as an argument. The string
+				should then be decoded and the result returned. See the example below for how the decoding for text and txt has been implemented:
+			</p>
+
+			<br>
+
+			<pre><code>JSED.setDecodingFunctionForMany(['txt', 'text'], async function (encodedData)
+{
+    return encodedData;
+});</code></pre>
+
+		</div>
+	</section>
+
+	<section class="section" id="alternatives-section">
+		<div class="container">
+			<h1 class="title is-1">
+				<strong class="important">Alternatives</strong>
+			</h1>
+
+			<p>
+				JSED is not the only solution to the local CORS error, as such a few other alternatives are presented here.
+			</p>
+
+			<br>
+
+			<h3 class="title is-3">
+				Custom Formatted JavaScript Files
+			</h3>
+
+			<p>
+				It is possible to create plain JavaScript files that contain data and which bypass the CORS error (JSED is just an extension on
+				this method). For example, creating a file called <strong>"data.js"</strong> and setting its content to <strong>"var data = { "number": 55 }"</strong>,
+				will allow one to use the contents of the "data" variable without errors. However, this approach has a few problems, such as that a global variable has to be specified,
+				which could potentially affect other portions of the application. Furthermore, for this approach to work entirely without errors you will in
+				practice have to generate two unique values, one for the file path and one for the global variable. JSED on the other hand only requires
+				a unique file path (which is something all files have). Additionally, to make the custom JavaScript work properly callbacks and other boilerplate
+				would have to be implemented. JSED takes care of all this.
+			</p>
+
+			<br>
+
+			<h3 class="title is-3">
+				Firefox
+			</h3>
+
+			<p>
+				Firefox permits the loading and reading of local files with some reservations. However, this is not a proper solution,
+				since users may or may not be using the browser.
+			</p>
+
+			<br>
+
+			<h3 class="title is-3">
+				Commandline Arguments
+			</h3>
+
+			<p>
+				Some browsers can be launched with commandline arguments, which then solve the CORS problem. This is a too technical solution
+				for most users.
+			</p>
+
+			<br>
+
+			<h3 class="title is-3">
+				Installing a Local Webserver
+			</h3>
+
+			<p>
+				The problem can be solved by having the user download and install a webserver, which then has to be started and the application
+				must be placed in the correct directory. Additionally, the webserver might have to be configured. In other words, this is
+				too complex for the standard user.
+			</p>
+
+			<br>
+
+			<h3 class="title is-3">
+				Electron
+			</h3>
+
+			<p>
+				The whole application can be packaged as an Electron application, but this is quite the overkill for several scenarios. Additionally,
+				the package size grows substantially.
+			</p>
+
+			<br>
+
+		</div>
+	</section>
+
+
+	<section class="section" id="browser-support-section">
+		<div class="container">
+			<h1 class="title is-1">
+				<strong class="important">Browser Support</strong>
+			</h1>
+
+			<table>
+				<tr>
+					<td style="width: 10rem">
+						Google Chrome
+					</td>
+					<td>
+						Yes
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Firefox
+					</td>
+					<td>
+						Yes
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Edge
+					</td>
+					<td>
+						Yes
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Edge (Chromium)
+					</td>
+					<td>
+						Yes
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Opera
+					</td>
+					<td>
+						Yes
+					</td>
+				</tr>
+				<tr>
+					<td>
+						IE11
+					</td>
+					<td>
+						Supported with transpilation, see <a href="https://babeljs.io">Babel</a>. Transpiled JavaScript files are not provided by this library.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Safari
+					</td>
+					<td>
+						Not tested.
+					</td>
+				</tr>
+			</table>
+
+			<br>
+
+		</div>
+	</section>
+
+	<div id="v-space" style="height: 50vh;">
+	</div>
+
+	<!-- Demo scripts -->
+	<script src="demo/js/bulma.js"></script>
+
+	<!-- JSED scripts -->
+	<script src="src/jsed.js"></script>
+	<script src="dist/lib/current-executing-script/current-executing-script.min.js"></script>
+
+	<script src="dist/lib/zip/zip.js"></script>
+	<script src="dist/lib/zip/inflate.js"></script>
+	<script src="dist/lib/zip/deflate.js"></script>
+	<script>
+		zip.useWebWorkers = false;
+	</script>
+
+	<script src="dist/lib/papaparse/papaparse.min.js"></script>
+
+	<script>
+
+		// Just a bad example of a custom decoding function
+		JSED.setDecodingFunction('rot13', async function (encodedData) 
+		{
+			var org = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+			var rot = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+
+			var decodedData = '';
+
+			for (var i = 0; i < encodedData.length; i++)
+			{
+				var char = encodedData[i];
+				var charIndex = org.indexOf(char);
+
+				if (charIndex > -1)
+				{
+					decodedData += rot[charIndex];
+				}
+				else
+				{
+					decodedData += char;
+				}
+			}
+
+			return decodedData;
+		});
+	</script>
+
+	<script>
+
+		JSED.parse('demo/why.jsed', function (parsedData) 
+		{
+			var whyTableElement = document.getElementById('why-table');
+
+			var whys = parsedData.why.sort(function (a, b)
+			{
+				return b.priority - a.priority;
+			});
+
+			for (var i = 0; i < whys.length; i++)
+			{
+				var why = whys[i];
+
+				var template =
+					`
+					<tr>
+						<td style="width: 7rem">
+							${why.date}
+						</td>
+						<td>
+							<a href="${why.url}">
+								<strong>
+									${why.title}
+								</strong>
+							</a>
+						</td>
+					</tr>
+				`;
+
+				whyTableElement.innerHTML += template;
+			}
+
+		});
+
+	</script>
+
+	<script>
+		var logoButton = document.getElementById('logo');
+		var mainButton = document.getElementById('main');
+		var whyButton = document.getElementById('why');
+		var usageButton = document.getElementById('usage');
+		var formatsButton = document.getElementById('formats');
+		var alternativesButton = document.getElementById('alternatives');
+		var browserSupportButton = document.getElementById('browser-support');
+
+		var mainSection = document.getElementById('main-section');
+		var whySection = document.getElementById('why-section');
+		var usageSection = document.getElementById('usage-section');
+		var formatsSection = document.getElementById('formats-section');
+		var alternativesSection = document.getElementById('alternatives-section');
+		var browserSupportSection = document.getElementById('browser-support-section');
+
+		var sections = document.body.getElementsByTagName('SECTION');
+
+		function hideAllSections()
+		{
+			for (var i = 0; i < sections.length; i++)
+			{
+				sections[i].style.display = 'none';
+			}
+			window.scrollTo(0, 0);
+		}
+
+		logoButton.onclick = function ()
+		{
+			hideAllSections();
+			mainSection.style.display = 'block';
+		};
+
+		mainButton.onclick = function ()
+		{
+			hideAllSections();
+			mainSection.style.display = 'block';
+		};
+
+		whyButton.onclick = function ()
+		{
+			hideAllSections();
+			whySection.style.display = 'block';
+		};
+
+		usageButton.onclick = function ()
+		{
+			hideAllSections();
+			usageSection.style.display = 'block';
+		};
+
+		formatsButton.onclick = function ()
+		{
+			hideAllSections();
+			formatsSection.style.display = 'block';
+		};
+
+		alternativesButton.onclick = function ()
+		{
+			hideAllSections();
+			alternativesSection.style.display = 'block';
+		};
+
+		browserSupportButton.onclick = function ()
+		{
+			hideAllSections();
+			browserSupportSection.style.display = 'block';
+		};
+
+		hideAllSections();
+
+		if (window.location.hash == '')
+		{
+			mainButton.click();
+		}
+		else
+		{
+			document.getElementById(window.location.hash.split('#')[1]).click();
+		}
+
+		document.getElementById('v-space').focus();
+
+	</script>
+
+	<script>
+		var csvExampleButton = document.getElementById('csv-example-button');
+		var htmlExampleButton = document.getElementById('html-example-button');
+		var jsonExampleButton = document.getElementById('json-example-button');
+		var txtExampleButton = document.getElementById('txt-example-button');
+		var zipExampleButton = document.getElementById('zip-example-button');
+
+		var csvExampleDownloadButton = document.getElementById('csv-example-dl-button');
+		var htmlExampleDownloadButton = document.getElementById('html-example-dl-button');
+		var jsonExampleDownloadButton = document.getElementById('json-example-dl-button');
+		var txtExampleDownloadButton = document.getElementById('txt-example-dl-button');
+		var zipExampleDownloadButton = document.getElementById('zip-example-dl-button');
+
+		var csvExampleOutput = document.getElementById('csv-example-output');
+		var htmlExampleOutput = document.getElementById('html-example-output');
+		var jsonExampleOutput = document.getElementById('json-example-output');
+		var txtExampleOutput = document.getElementById('txt-example-output');
+		var zipExampleOutput = document.getElementById('zip-example-output');
+
+		csvExampleButton.onclick = function ()
+		{
+			JSED.parse('demo/data/jsed/example-csv.jsed', function (parsedData)
+			{
+				csvExampleOutput.value = JSON.stringify(parsedData);
+				console.log(parsedData);
+			});
+		};
+
+		htmlExampleButton.onclick = function ()
+		{
+			JSED.parse('demo/data/jsed/example-html.jsed', function (parsedData)
+			{
+				htmlExampleOutput.value = parsedData.innerHTML;
+				console.log(parsedData);
+			});
+		};
+
+		jsonExampleButton.onclick = function ()
+		{
+			JSED.parse('demo/data/jsed/example-json.jsed', function (parsedData)
+			{
+				jsonExampleOutput.value = JSON.stringify(parsedData);
+				console.log(parsedData);
+			});
+		};
+
+		txtExampleButton.onclick = function ()
+		{
+			JSED.parse('demo/data/jsed/example-txt.jsed', function (parsedData)
+			{
+				txtExampleOutput.value = JSON.stringify(parsedData);
+				console.log(parsedData);
+			});
+		};
+
+		zipExampleButton.onclick = function ()
+		{
+			JSED.parse('demo/data/jsed/example-zip.jsed', function (parsedData)
+			{
+				zipExampleOutput.value = JSON.stringify(parsedData);
+				console.log(parsedData);
+			});
+		};
+
+		function downloadFile(uri) 
+		{
+			var uriSplit = uri.split('/');
+
+			var anchor = document.createElement("a");
+			anchor.download = uriSplit[uriSplit.length - 1];
+			anchor.href = uri;
+			anchor.style.display = 'none';
+			anchor.target = '_blank';
+
+			document.body.appendChild(anchor);
+
+			anchor.click();
+		}
+
+		csvExampleDownloadButton.onclick = function ()
+		{
+			downloadFile('demo/data/raw/example-csv.csv');
+		};
+
+		htmlExampleDownloadButton.onclick = function ()
+		{
+			downloadFile('demo/data/raw/example-html.html');
+		};
+
+		jsonExampleDownloadButton.onclick = function ()
+		{
+			downloadFile('demo/data/raw/example-json.json');
+		};
+
+		txtExampleDownloadButton.onclick = function ()
+		{
+			downloadFile('demo/data/raw/example-txt.txt');
+		};
+
+		zipExampleDownloadButton.onclick = function ()
+		{
+			downloadFile('demo/data/raw/example-zip.zip');
+		};
+
+	</script>
+
+
+</body>
+
+</html>

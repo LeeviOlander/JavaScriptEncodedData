@@ -1,0 +1,60 @@
+﻿.navbar
+{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none; 
+	-khtml-user-select: none;
+	-moz-user-select: none; 
+	-ms-user-select: none;
+}
+
+.navbar-brand a.navbar-item:hover
+{
+	background-color: #FAFAFA;
+}
+
+	.navbar-brand a.navbar-item:hover > img
+	{
+		filter: invert(41%) sepia(16%) saturate(7057%) hue-rotate(203deg) brightness(89%) contrast(93%);
+	}
+
+.navbar-item
+{
+	font-weight: bold;
+}
+
+a.navbar-item:target
+{
+	background-color: #FAFAFA;
+	color: #3273DC;
+}
+
+.title strong
+{
+	font-weight: bold;
+}
+
+.important
+{
+	color: #3273DC !important;
+}
+
+li
+{
+	margin-left: 1rem;
+}
+
+body
+{
+	background: #F5F5F5;
+	min-height: 100vh;
+}
+
+pre
+{
+	background: rgba(0, 0, 0, 0.05);
+}
+
+.navbar-brand > .navbar-item > img 
+{
+	filter: none !important;
+}

@@ -1,0 +1,86 @@
+JSED.execute("json", "text", 
+`
+    {
+	    "why": 
+        [
+            {
+                "date": "2016-07-13",
+                "title": "AJAX request to local file system not working in Chrome?",
+                "url": "https://stackoverflow.com/questions/38344612/ajax-request-to-local-file-system-not-working-in-chrome",
+                "priority": 17
+            },
+            {
+                "date": "2015-10-07",
+                "title": "Jquery load() only working in firefox?",
+                "url": "https://stackoverflow.com/questions/32996001/jquery-load-only-working-in-firefox",
+                "priority": 0
+            },
+            {
+                "date": "2014-12-02",
+                "title": "“Cross origin requests are only supported for HTTP.” error when loading a local file",
+                "url": "https://stackoverflow.com/questions/10752055/cross-origin-requests-are-only-supported-for-http-error-when-loading-a-local",
+                "priority": 768
+            },
+            {
+                "date": "2016-08-26",
+                "title": "XMLHttpRequest; Cross origin requests are only supported for protocol schemes: http, data, chrome, chrome-extension, https, chrome-extension-resource",
+                "url": "https://stackoverflow.com/questions/32578707/xmlhttprequest-cross-origin-requests-are-only-supported-for-protocol-schemes-h",
+                "priority": 3
+            },
+            {
+                "date": "2014-01-03",
+                "title": "React.js: Example in tutorial not working",
+                "url": "https://stackoverflow.com/questions/20904098/react-js-example-in-tutorial-not-working",
+                "priority": 42
+            },
+            {
+                "date": "2018-01-20",
+                "title": "CORS request blocked in locally opened html",
+                "url": "https://stackoverflow.com/questions/48362093/cors-request-blocked-in-locally-opened-html",
+                "priority": 8
+            },
+            {
+                "date": "2010-08-27",
+                "title": "How to open a local disk file with JavaScript?",
+                "url": "https://stackoverflow.com/questions/3582671/how-to-open-a-local-disk-file-with-javascript",
+                "priority": 148
+            },
+            {
+                "date": "2013-01-21",
+                "title": "How to read a local text file?",
+                "url": "https://stackoverflow.com/questions/14446447/how-to-read-a-local-text-file",
+                "priority": 338
+            },
+            {
+                "date": "2010-03-29",
+                "title": "Problems with jQuery getJSON using local files in Chrome?",
+                "url": "https://stackoverflow.com/questions/2541949/problems-with-jquery-getjson-using-local-files-in-chrome",
+                "priority": 48
+            },
+            {
+                "date": "2010-04-08",
+                "title": "Local files doesn't load with Ajax",
+                "url": "https://bugs.chromium.org/p/chromium/issues/detail?id=40787&q=ajax%20local&colspec=ID%20Stars%20Pri%20Area%20Feature%20Type%20Status%20Summary%20Modified%20Owner%20Mstone%20OS",
+                "priority": 200
+            },
+            {
+                "date": "2010-10-17",
+                "title": "XMLHttpRequest Origin null is not allowed Access-Control-Allow-Origin for file:/// to file:/// (Serverless)",
+                "url": "https://stackoverflow.com/questions/4208530/xmlhttprequest-origin-null-is-not-allowed-access-control-allow-origin-for-file",
+                "priority": 206
+            },
+            {
+                "date": "2008-12-16",
+                "title": "Local file access with JavaScript",
+                "url": "https://stackoverflow.com/questions/371875/local-file-access-with-javascript",
+                "priority": 206
+            },
+            {
+                "date": "2010-06-10",
+                "title": "jQuery .load() not working in Chrome",
+                "url": "https://stackoverflow.com/questions/2990518/jquery-load-not-working-in-chrome",
+                "priority": 24
+            }
+        ]
+    }
+`);
